@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.linus</groupId>
+    <artifactId>webservice</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>webservice</name>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!-- required by web service server, begin -->
+        <dependency>
+            <!-- POJO WebService需要这个依赖 -->
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-ant-plugin</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-java2wsdl-maven-plugin</artifactId>
+            <version>1.8.0</version>
+            <type>maven-plugin</type>
+        </dependency>
+        <!-- required by web service server, end -->
+
+        <!-- required by web service client, begin -->
+        <dependency>
+            <!-- https://mvnrepository.com/artifact/javax.xml/jaxrpc -->
+            <groupId>javax.xml</groupId>
+            <artifactId>jaxrpc</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <!-- axis 1.x. https://mvnrepository.com/artifact/org.apache.axis/axis -->
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- required by web service client, end -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+    </dependencies>
+
+</project>

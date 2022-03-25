@@ -6,18 +6,17 @@ import java.util.logging.Logger;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
-import javax.xml.ws.WebEndpoint;
 import javax.xml.ws.WebServiceClient;
 import javax.xml.ws.WebServiceFeature;
 
-import com.linus.jaxws.webservice.sei.JaxWsAPIInterface;
+import com.linus.api.components.WeatherAPIInterface;
 
 /**
  * 
  * @author lyan2
  *
  */
-@WebServiceClient(name="WeatherService")
+@WebServiceClient(name="JaxWsAPIService", targetNamespace="urn:com:linus:api:components")
 public class JaxWsServiceClient extends Service {
     
     private final static URL WSDL_LOCATION;
@@ -28,9 +27,9 @@ public class JaxWsServiceClient extends Service {
         try {
             URL baseUrl = JaxWsServiceClient.class.getResource("/");
             logger.info("JaxWS base URL: " + baseUrl);
-            url = new URL(baseUrl, "wsdl/JaxWsAPI.wsdl");
+            url = new URL(baseUrl, "wsdl/JaxWsAPIService.wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'wsdl/JaxWsAPI.wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'wsdl/JaxWsAPIService.wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         WSDL_LOCATION = url;
@@ -45,7 +44,7 @@ public class JaxWsServiceClient extends Service {
     }
     
     public JaxWsServiceClient() throws MalformedURLException {
-        this(WSDL_LOCATION, new QName("http://service.webservice.jaxws.linus.com", "JaxWsAPIService"));
+        this(WSDL_LOCATION, new QName("urn:com:linus:api:components", "JaxWsAPIService"));
     }
     
     /**
@@ -53,9 +52,8 @@ public class JaxWsServiceClient extends Service {
      * @return
      *     returns EBayAPIInterface
      */
-    @WebEndpoint(name = "WeatherAPI")
-    public JaxWsAPIInterface getJaxWsAPI() {
-        return super.getPort(new QName("http://service.webservice.jaxws.linus.com", "JaxWsAPI"), JaxWsAPIInterface.class);
+    public WeatherAPIInterface getJaxWsAPI() {
+        return super.getPort(WeatherAPIInterface.class);
     }
 
     /**
@@ -65,9 +63,8 @@ public class JaxWsServiceClient extends Service {
      * @return
      *     returns EBayAPIInterface
      */
-    @WebEndpoint(name = "WeatherAPI")
-    public JaxWsAPIInterface getWeatheryAPI(WebServiceFeature... features) {
-        return super.getPort(new QName("http://service.webservice.jaxws.linus.com", "JaxWsAPI"), JaxWsAPIInterface.class, features);
+    public WeatherAPIInterface getWeatheryAPI(WebServiceFeature... features) {
+        return super.getPort(WeatherAPIInterface.class, features);
     }
 
 }

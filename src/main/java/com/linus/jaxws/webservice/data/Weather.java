@@ -2,7 +2,7 @@ package com.linus.jaxws.webservice.data;
 
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(namespace="urn:com:linus:api:components")
+@XmlType(name="Weather", namespace="urn:com:linus:api:components")
 public class Weather {
     private float temperature;
     private String forecast;
